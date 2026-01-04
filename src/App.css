@@ -1,0 +1,250 @@
+.product-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.product-card {
+  border: 1px solid #ddd;
+  padding: 15px;
+  border-radius: 10px;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.product-img {
+  width: 100%;
+  height: 150px;
+  object-fit: contain; /* Keeps the image from looking stretched */
+  margin-bottom: 10px;
+}
+
+.cart-sidebar {
+  background: #f9f9f9;
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid #eee;
+  height: sticky;
+  top: 20px;
+}
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.cart-controls button {
+  padding: 2px 8px;
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+.remove-btn {
+  background: none;
+  border: none;
+  color: #ff4d4d;
+  margin-left: 10px;
+}
+
+.checkout-btn {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  margin-top: 15px;
+}
+
+/* src/App.css */
+
+/* This wraps both the products and the cart */
+.shop-layout {
+  display: flex;
+  align-items: flex-start; /* Keeps the sidebar at the top */
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* The product section takes up the remaining space */
+.product-list {
+  flex: 1; 
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+/* The Sidebar: Important for UX */
+.cart-sidebar {
+  width: 350px;
+  position: sticky; /* THIS IS THE MAGIC */
+  top: 20px;       /* Keeps it pinned to the top of the screen when you scroll */
+  background: #fdfdfd;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  max-height: 90vh; /* Limits height if there are many items */
+  overflow-y: auto; /* Adds internal scroll if cart is long */
+}
+
+/* Update these in App.css */
+.header {
+  padding: 2rem 0;
+  border-bottom: 1px solid #eee;
+  margin-bottom: 2rem;
+}
+
+.filters {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+input[type="text"], select {
+  padding: 10px 16px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+input[type="text"]:focus, select:focus {
+  border-color: #007bff; /* Professional blue highlight */
+}
+
+button {
+  cursor: pointer;
+  border-radius: 6px;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.product-card {
+  background: #ffffff;
+  border: 1px solid #f0f0f0;
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05); /* Subtle shadow */
+}
+
+.product-card:hover {
+  transform: translateY(-4px); /* Interactive lift effect */
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.product-card h3 {
+  font-size: 1.1rem;
+  margin: 10px 0 5px;
+  color: #333;
+}
+
+.category {
+  font-size: 12px;
+  text-transform: uppercase;
+  color: #888;
+  letter-spacing: 0.5px;
+}
+
+.price {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #2c3e50;
+  margin: 10px 0;
+}
+
+.add-btn {
+  background: #27ae60; /* Success green */
+  color: white;
+  border: none;
+  padding: 12px;
+  width: 100%;
+  margin-top: auto; /* Pushes button to the bottom */
+}
+
+.add-btn:hover {
+  background: #219150;
+}
+
+.cart-sidebar {
+  background: #f8f9fa;
+  border-radius: 12px;
+  padding: 24px;
+  border: 1px solid #e9ecef;
+}
+
+.cart-item {
+  background: white;
+  margin-bottom: 12px;
+  padding: 12px;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.qty-btn {
+  background: #e9ecef;
+  border: none;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7); /* Dim the background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  position: relative;
+  max-width: 600px;
+  width: 90%;
+  animation: fadeIn 0.3s ease;
+}
+
+.close-btn {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 30px;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.modal-body {
+  display: flex;
+  gap: 20px;
+}
+
+.modal-img {
+  width: 200px;
+  object-fit: contain;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
