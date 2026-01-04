@@ -1,15 +1,11 @@
-// export default App
-// 1. IMPORTS go at the very top
 import { useState, useEffect, useMemo, useCallback } from 'react';
-import ProductCard from './components/ProductCard'; // Import the block we just made
+import ProductCard from './components/ProductCard';
 import Cart from './components/Cart';
 import './App.css';
 import Modal from './components/Modal';
 
 function App() {
-  // 2. STATE goes at the top of the function
   const [products, setProducts] = useState([]);
-  //const [cart, setCart] = useState([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("All");
@@ -22,25 +18,23 @@ function App() {
 
 
   const [cart, setCart] = useState(() => {
-    // Load initial state from storage
     const savedCart = localStorage.getItem('mini-store-cart');
     return savedCart ? JSON.parse(savedCart) : [];
   });
 
-  // Update storage whenever cart changes
   useEffect(() => {
     localStorage.setItem('mini-store-cart', JSON.stringify(cart));
   }, [cart]);
 
-  const [searchTerm, setSearchTerm] = useState(""); // Immediate input state
-  const [debouncedSearch, setDebouncedSearch] = useState(""); // Delayed filter state
+  const [searchTerm, setSearchTerm] = useState("");
+  const [debouncedSearch, setDebouncedSearch] = useState("");
 
   useEffect(() => {
     const handler = setTimeout(() => {
       setDebouncedSearch(searchTerm);
-    }, 500); // Wait 500ms after last keystroke
+    }, 500);
 
-    return () => clearTimeout(handler); // Cleanup timer if user types again
+    return () => clearTimeout(handler);
   }, [searchTerm]);
 
   // 3. THE API CALL (Effect)
@@ -55,7 +49,7 @@ function App() {
 
   // 4. THE LOGIC (Filters & Add to Cart)
   const filteredProducts = useMemo(() => {
-    let result = [...products]; // Create a copy of the products array
+    let result = [...products]; 
 
     // 1. Filter by Search Term
     if (search) {
@@ -99,7 +93,6 @@ function App() {
     setCart(prev => prev.map(item => {
       if (item.id === id) {
         const newQty = item.quantity + amount;
-        // Safety check: ensure quantity doesn't go below 1 or above stock
         return { ...item, quantity: newQty };
       }
       return item;
